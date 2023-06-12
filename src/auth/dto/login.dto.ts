@@ -11,7 +11,8 @@ export class LogInDTO {
   @IsString()
   readonly userName: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
+  @IsOptional()
   @IsEmail()
   readonly email: string;
 
