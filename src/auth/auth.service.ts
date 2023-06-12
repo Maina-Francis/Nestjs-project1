@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/auth.user.schema';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDTO } from './dto/signup.dto';
+import { LogInDTO } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -37,6 +38,38 @@ export class AuthService {
       id: user._id,
       firsName: firstName,
       lastName: lastName,
+      userName: userName,
+      email: email,
+    });
+
+    return { token };
+  }
+
+  //   User Login service
+  async login(loginDto: LogInDTO) {
+    console.log(loginDto);
+
+    const { email, userName, password } = loginDto;
+
+    // find user by email or userName
+    const user = await this.userModel.findOne({
+      $or: [{ email }, { userName }],
+    });
+
+    if (!user) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatched) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
+    // assign jwt token to user
+    const token = this.jwtService.sign({
+      // payload
+      id: user._id,
       userName: userName,
       email: email,
     });
