@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Length } from 'class-validator';
 import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
@@ -20,6 +21,7 @@ export class User {
   email: string;
 
   @Prop()
+  @Length(6, 255, { message: 'Password must be at least 6 characters long' })
   password: string;
 }
 

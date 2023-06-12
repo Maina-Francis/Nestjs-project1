@@ -16,7 +16,8 @@ export class AuthService {
 
   //   User Signup service
   async signUp(signUpDTO: SignUpDTO): Promise<{ token: string }> {
-    const { firstName, lastName, email, password } = signUpDTO;
+    // console.log(signUpDTO);
+    const { firstName, lastName, userName, email, password } = signUpDTO;
 
     //hash password before saving to database
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -25,6 +26,7 @@ export class AuthService {
     const user = await this.userModel.create({
       firstName,
       lastName,
+      userName,
       email,
       password: hashedPassword,
     });
@@ -35,6 +37,7 @@ export class AuthService {
       id: user._id,
       firsName: firstName,
       lastName: lastName,
+      userName: userName,
       email: email,
     });
 
