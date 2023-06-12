@@ -7,6 +7,7 @@ const common_1 = require("@nestjs/common");
 async function bootstrap() {
     dotenv.config();
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors();
     app.useGlobalPipes(new common_1.ValidationPipe());
     await app.listen(8000);
 }
