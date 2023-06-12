@@ -23,6 +23,12 @@ export class AuthService {
     //hash password before saving to database
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    const existingUser = await this.userModel.findOne({ email });
+
+    if (existingUser) {
+      return { token: 'User already exists' };
+    }
+
     // Save User to database
     const user = await this.userModel.create({
       firstName,
@@ -47,7 +53,7 @@ export class AuthService {
 
   //   User Login service
   async login(loginDto: LogInDTO) {
-    console.log(loginDto);
+    // console.log(loginDto);
 
     const { email, userName, password } = loginDto;
 
