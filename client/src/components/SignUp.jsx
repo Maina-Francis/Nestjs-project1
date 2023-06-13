@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Validation from "./LoginValidation";
+import axios from "axios";
 
 const SignUp = () => {
   const [values, setValues] = useState({
@@ -11,16 +12,36 @@ const SignUp = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 
   const handleInput = (e) => {
-    setValues((prev) => ({ ...prev, [e.target.name]: [e.target.value] }));
+    setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors(Validation(values));
+
+    // console.log(values);
+
+    //     if (errors.email === "") {
+    //       await axios
+    //         .post("http://localhost:8000/auth/signup", values)
+    //         .then((res) => {
+    //           navigate("/");
+    //         })
+    //         .catch((err) => console.log(err));
+    //     }
+    //   };
+    await axios
+      .post("http://localhost:8000/auth/signup", values)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
+
   return (
     <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
       <div className="bg-white p-3 rounded w-25">
