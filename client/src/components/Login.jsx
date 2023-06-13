@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Validation from "./LoginValidation";
+import axios from "axios";
 
 const Login = () => {
   const [values, setValues] = useState({
@@ -14,9 +15,16 @@ const Login = () => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors(Validation(values));
+
+    await axios
+      .post("http://localhost:8000/auth/login", values)
+      .then((res) => {
+        Navigate("/home");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
