@@ -22,6 +22,7 @@ const Login = () => {
     await axios
       .post("http://localhost:8000/auth/login", values)
       .then((res) => {
+        // console.log(res);
         Navigate("/home");
       })
       .catch((err) => console.log(err));
