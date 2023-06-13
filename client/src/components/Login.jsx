@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
     <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
       <div className="bg-white p-3 rounded w-25">
+        <h2>Login</h2>
         <form action="">
           <div className="mb-3">
             <label htmlFor="email">
@@ -30,9 +32,12 @@ const Login = () => {
           <button className="btn btn-success w-100 rounded-1">Login</button>
 
           <p>You agree to our terms and conditions</p>
-          <button className="btn btn-default border w-100 bg-light rounded-1">
+          <Link
+            to="/signup"
+            className="btn btn-default border w-100 bg-light rounded-1 text-decoration-none"
+          >
             Create Account
-          </button>
+          </Link>
         </form>
       </div>
     </div>
