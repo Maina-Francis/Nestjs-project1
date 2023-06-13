@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Validation from "./LoginValidation";
 import axios from "axios";
 
@@ -8,6 +8,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
 
@@ -23,7 +25,7 @@ const Login = () => {
       .post("http://localhost:8000/auth/login", values)
       .then((res) => {
         // console.log(res);
-        Navigate("/home");
+        navigate("/home");
       })
       .catch((err) => console.log(err));
   };
