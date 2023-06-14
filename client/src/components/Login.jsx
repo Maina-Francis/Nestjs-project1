@@ -21,13 +21,17 @@ const Login = () => {
     e.preventDefault();
     setErrors(Validation(values));
 
-    await axios
-      .post("http://localhost:8000/auth/login", values)
-      .then((res) => {
-        // console.log(res);
-        navigate("/home");
-      })
-      .catch((err) => console.log(err));
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/auth/login",
+        values
+      );
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      navigate("/home");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
