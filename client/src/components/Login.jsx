@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Validation from "./LoginValidation";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -28,6 +28,7 @@ const Login = () => {
       );
       const token = response.data.token;
       localStorage.setItem("token", token);
+      setIsAuthenticated(true);
       navigate("/home");
     } catch (error) {
       console.log(error);
