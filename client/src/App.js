@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home/Home";
+import ProtectedRoute from "./components/ProtectedRoute";
 // import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
@@ -25,12 +26,22 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/signup" element={<SignUp />} />
+
         <Route
           path="/"
           element={<Login setIsAuthenticated={setIsAuthenticated} />}
         />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path={isAuthenticated ? "/home" : ""} exact element={<Home />} />
+
+        <Route
+          path="/home"
+          exact
+          element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
