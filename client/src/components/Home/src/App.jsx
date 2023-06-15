@@ -9,6 +9,7 @@ import { Testimonials } from "./components/testimonials";
 import { Team } from "./components/Team";
 import JsonData from "./data/data.json";
 import "./App.css";
+import Project2Btn from "./components/Project2.btn";
 
 const App = () => {
   const [landingPageData, setLandingPageData] = useState({});
@@ -27,6 +28,10 @@ const App = () => {
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
       {/* <Contact data={landingPageData.Contact} /> */}
+      <Project2Btn url="http://localhost:3001/home">
+        {" "}
+        Go to Project 2{" "}
+      </Project2Btn>
     </div>
   );
 };
