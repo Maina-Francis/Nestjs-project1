@@ -62,6 +62,8 @@ export class AuthService {
       $or: [{ email }, { userName }],
     });
 
+    // console.log(`User: ${user}`);
+
     if (!user) {
       throw new UnauthorizedException('Invalid email or password');
     }
@@ -72,12 +74,15 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
+    // const { firstName, lastName, email, _id } = user;
     // assign jwt token to user
     const token = this.jwtService.sign({
       // payload
       id: user._id,
-      userName: userName,
-      email: email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      // userName: userName,
+      email: user.email,
     });
 
     return { token };

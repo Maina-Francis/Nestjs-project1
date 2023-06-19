@@ -6,6 +6,9 @@ import { UserSchema } from './schemas/auth.user.schema';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService, ConfigModule } from '@nestjs/config';
+import { config } from 'dotenv';
+
+config();
 
 @Module({
   imports: [
@@ -15,11 +18,12 @@ import { ConfigService, ConfigModule } from '@nestjs/config';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
+      useFactory: () => {
         return {
-          secret: config.get<string>('JWT_SECRET'),
+          // secret: config.get<string>('JWT_SECRET'),
+          secret: process.env.JWT_SECRET,
           signOptions: {
-            expiresIn: config.get<string | number>('JWT_EXPIRE'),
+            expiresIn: process.env.JWT_EXPIRE,
           },
         };
       },

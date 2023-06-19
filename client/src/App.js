@@ -4,7 +4,6 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./components/Home/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
-// import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -12,15 +11,13 @@ const App = () => {
   useEffect(() => {
     const checkAuthentication = () => {
       const token = localStorage.getItem("token");
+      // console.log(token);
       return !!token; // Convert token presence to boolean value
     };
+
     const is_Authenticated = checkAuthentication();
-    if (!is_Authenticated) {
-      setIsAuthenticated(false);
-    } else {
-      setIsAuthenticated(true);
-    }
-    console.log(is_Authenticated);
+
+    setIsAuthenticated(is_Authenticated);
   }, []);
 
   return (

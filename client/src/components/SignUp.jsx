@@ -45,7 +45,7 @@ const SignUp = () => {
   return (
     <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
       <div className="bg-white p-3 rounded w-25">
-        <h2>Site 1 Sign Up</h2>
+        <h2>Ebm Suite Sign Up</h2>
         <form action="" onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="first name">
