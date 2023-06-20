@@ -26,9 +26,26 @@ const Login = ({ setIsAuthenticated }) => {
         "http://localhost:8000/auth/login",
         values
       );
-      const token = response.data.token;
-      localStorage.setItem("token", token);
+      const accessToken = response.data.token;
+      localStorage.setItem("access_token", accessToken);
+      // console.log(access_token);
+
       setIsAuthenticated(true);
+
+      // Hit the auth-service endpoint
+      const authServiceResponse = await axios.post(
+        "http://localhost:5000/auth/login",
+        {
+          token: accessToken,
+          sourceSystem: "EBM",
+        }
+      );
+
+      const refreshToken = authServiceResponse.data.refresh_token;
+      localStorage.setItem("refresh_token", refreshToken);
+
+      console.log(authServiceResponse);
+
       navigate("/home");
     } catch (error) {
       console.log(error);
