@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Home from "./Home";
 import ProtectedRoute from "./components/ProtectedRoute";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

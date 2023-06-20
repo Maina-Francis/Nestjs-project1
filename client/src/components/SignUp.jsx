@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Validation from "./LoginValidation";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const SignUp = () => {
   const [values, setValues] = useState({
@@ -93,7 +93,7 @@ const SignUp = () => {
             </label>
             <input
               type="email"
-              placeholder="Enter Password"
+              placeholder="Enter Email"
               name="email"
               onChange={handleInput}
               className="form-control rounded-1"
