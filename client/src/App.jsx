@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Home from "./components/Home/Home";
+import Home from "./Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {

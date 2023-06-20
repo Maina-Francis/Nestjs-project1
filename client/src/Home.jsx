@@ -7,11 +7,18 @@ import { Services } from "./components/services";
 import { Gallery } from "./components/gallery";
 import { Testimonials } from "./components/testimonials";
 import { Team } from "./components/Team";
+import { Contact } from "./components/contact";
 import JsonData from "./data/data.json";
+import SmoothScroll from "smooth-scroll";
 import "./App.css";
 import Project2Btn from "./components/Project2.btn";
 
-const App = () => {
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
+
+const Home = () => {
   const [landingPageData, setLandingPageData] = useState({});
   useEffect(() => {
     setLandingPageData(JsonData);
@@ -27,7 +34,7 @@ const App = () => {
       <Gallery data={landingPageData.Gallery} />
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
-      {/* <Contact data={landingPageData.Contact} /> */}
+      <Contact data={landingPageData.Contact} />
       <Project2Btn url="http://localhost:3001/home">
         {" "}
         Go to Project 2{" "}
@@ -36,4 +43,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;

@@ -18,14 +18,11 @@ export const Navigation = (props) => {
             <span className="icon-bar"></span>{" "}
           </button>
           <a className="navbar-brand page-scroll" href="#page-top">
-            React Landing Page
+            Sample EBM Suite Landing Page
           </a>{" "}
         </div>
 
-        <div
-          className="collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1"
-        >
+        <div>
           <ul className="nav navbar-nav navbar-right">
             <li>
               <a href="#features" className="page-scroll">
