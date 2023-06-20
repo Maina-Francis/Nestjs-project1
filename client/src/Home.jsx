@@ -35,7 +35,7 @@ const Home = () => {
       <Testimonials data={landingPageData.Testimonials} />
       <Team data={landingPageData.Team} />
       <Contact data={landingPageData.Contact} />
-      <Project2Btn url="http://localhost:3001/home">
+      <Project2Btn url="http://localhost:3002/home">
         {" "}
         Go to Monival{" "}
       </Project2Btn>
