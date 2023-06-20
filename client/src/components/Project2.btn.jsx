@@ -39,12 +39,13 @@ const Project2Btn = ({ url, children }) => {
   return (
     <div className="d-flex  mb-4 justify-content-center align-items-center ">
       <div className="bg-white p-3 rounded w-25">
-        <button
-          onClick={handleClick}
-          className="btn btn-success w-100 rounded-1"
-        >
+        <button onClick={handleClick} className="btn btn-custom btn-lg">
           {children}
         </button>
+
+        {/* <button type="submit" className="btn btn-custom btn-lg">
+                  Send Message
+                </button> */}
       </div>
     </div>
   );

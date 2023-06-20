@@ -37,7 +37,7 @@ const Home = () => {
       <Contact data={landingPageData.Contact} />
       <Project2Btn url="http://localhost:3001/home">
         {" "}
-        Go to Project 2{" "}
+        Go to Monival{" "}
       </Project2Btn>
     </div>
   );
