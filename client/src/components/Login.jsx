@@ -44,7 +44,7 @@ const Login = ({ setIsAuthenticated }) => {
       const refreshToken = authServiceResponse.data.refresh_token;
       localStorage.setItem("refresh_token", refreshToken);
 
-      console.log(authServiceResponse);
+      // console.log(authServiceResponse);
 
       navigate("/home");
     } catch (error) {
