@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Validation from "./LoginValidation";
 import axios from "axios";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = ({ setIsAuthenticated }) => {
   const [values, setValues] = useState({
@@ -13,6 +12,20 @@ const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const checkAuthentication = () => {
+      const token = localStorage.getItem("access_token");
+      return !!token; // Convert token presence to boolean value
+    };
+
+    const isAuthenticated = checkAuthentication();
+    setIsAuthenticated(isAuthenticated);
+
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [setIsAuthenticated, navigate]);
 
   const handleInput = (e) => {
     setValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -29,7 +42,6 @@ const Login = ({ setIsAuthenticated }) => {
       );
       const accessToken = response.data.token;
       localStorage.setItem("access_token", accessToken);
-      // console.log(access_token);
 
       setIsAuthenticated(true);
 
@@ -44,8 +56,6 @@ const Login = ({ setIsAuthenticated }) => {
 
       const refreshToken = authServiceResponse.data.refresh_token;
       localStorage.setItem("refresh_token", refreshToken);
-
-      // console.log(authServiceResponse);
 
       navigate("/home");
     } catch (error) {
@@ -85,9 +95,6 @@ const Login = ({ setIsAuthenticated }) => {
               onChange={handleInput}
               className="form-control rounded-1"
             />
-            {/* {errors.password && (
-              <span className="text-danger">{errors.password}</span>
-            )} */}
           </div>
 
           <button type="submit" className="btn btn-success w-100 rounded-1">

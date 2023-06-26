@@ -7,7 +7,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/project1'),
+    MongooseModule.forRoot('mongodb://localhost/EBM-Suite'),
     UserModule,
     AuthModule,
   ],

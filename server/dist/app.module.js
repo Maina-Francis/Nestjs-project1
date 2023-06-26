@@ -18,7 +18,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forRoot('mongodb://localhost/project1'),
+            mongoose_1.MongooseModule.forRoot('mongodb://localhost/EBM-Suite'),
             user_module_1.UserModule,
             auth_module_1.AuthModule,
         ],
