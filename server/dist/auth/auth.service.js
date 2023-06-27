@@ -15,10 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const auth_user_schema_1 = require("./schemas/auth.user.schema");
 const mongoose_2 = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt_1 = require("@nestjs/jwt");
+const auth_user_schema_1 = require("./schemas/auth.user.schema");
 let AuthService = class AuthService {
     constructor(userModel, jwtService) {
         this.userModel = userModel;
@@ -40,10 +40,9 @@ let AuthService = class AuthService {
         });
         const token = this.jwtService.sign({
             id: user._id,
-            firsName: firstName,
-            lastName: lastName,
-            userName: userName,
-            email: email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
         });
         return { token };
     }

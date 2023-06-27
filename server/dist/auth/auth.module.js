@@ -15,15 +15,16 @@ const auth_user_schema_1 = require("./schemas/auth.user.schema");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
-const dotenv_1 = require("dotenv");
-(0, dotenv_1.config)();
+const jwt_strategy_1 = require("../strategies/jwt.strategy");
+const dotenv = require("dotenv");
+dotenv.config();
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
             passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
-            config_1.ConfigModule,
+            config_1.ConfigModule.forRoot(),
             jwt_1.JwtModule.registerAsync({
                 imports: [config_1.ConfigModule],
                 inject: [config_1.ConfigService],
@@ -44,7 +45,7 @@ AuthModule = __decorate([
             ]),
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [auth_service_1.AuthService],
+        providers: [auth_service_1.AuthService, jwt_strategy_1.JwtStrategy],
     })
 ], AuthModule);
 exports.AuthModule = AuthModule;

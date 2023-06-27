@@ -57,6 +57,21 @@ const Login = ({ setIsAuthenticated }) => {
       const refreshToken = authServiceResponse.data.refresh_token;
       localStorage.setItem("refresh_token", refreshToken);
 
+      // set cookies:
+      function setCookie(name, value, days) {
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + days);
+
+        const cookieValue =
+          encodeURIComponent(value) +
+          "; expires=" +
+          expirationDate.toUTCString() +
+          "; path=/";
+        document.cookie = name + "=" + cookieValue;
+      }
+
+      setCookie("token", "your_token_value", 7);
+
       navigate("/home");
     } catch (error) {
       console.log(error);

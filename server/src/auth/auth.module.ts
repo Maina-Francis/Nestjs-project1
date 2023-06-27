@@ -6,14 +6,16 @@ import { UserSchema } from './schemas/auth.user.schema';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService, ConfigModule } from '@nestjs/config';
-import { config } from 'dotenv';
+import { JwtStrategy } from '../strategies/jwt.strategy';
 
-config();
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
-    ConfigModule,
+    ConfigModule.forRoot(), //delete .forRoot
 
     JwtModule.registerAsync({
       imports: [ConfigModule],
@@ -36,6 +38,6 @@ config();
     ]),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
 })
 export class AuthModule {}
