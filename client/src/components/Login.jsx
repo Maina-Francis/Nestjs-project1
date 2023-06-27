@@ -66,11 +66,13 @@ const Login = ({ setIsAuthenticated }) => {
           encodeURIComponent(value) +
           "; expires=" +
           expirationDate.toUTCString() +
-          "; path=/";
+          "; path=/; domain=localhost";
         document.cookie = name + "=" + cookieValue;
+
+        // console.log(cookieValue);
       }
 
-      setCookie("token", "your_token_value", 7);
+      setCookie("token", accessToken, 7);
 
       navigate("/home");
     } catch (error) {

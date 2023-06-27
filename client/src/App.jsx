@@ -11,8 +11,9 @@ const App = () => {
   // const [accessToken, setAccessToken] = useState("");
   useEffect(() => {
     const checkAuthentication = () => {
-      const token = localStorage.getItem("token");
-      // console.log(token);
+      // const token = localStorage.getItem("token");
+      const token = document.cookie;
+      console.log(token);
       return !!token; // Convert token presence to boolean value
     };
 

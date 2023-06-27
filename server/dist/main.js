@@ -17,6 +17,7 @@ async function bootstrap() {
         saveUninitialized: false,
         cookie: {
             maxAge: 60000,
+            domain: 'localhost',
         },
     }));
     app.useGlobalPipes(new common_1.ValidationPipe());
