@@ -13,7 +13,7 @@ const App = () => {
     const checkAuthentication = () => {
       // const token = localStorage.getItem("token");
       const token = document.cookie;
-      console.log(token);
+      // console.log(token);
       return !!token; // Convert token presence to boolean value
     };
 
